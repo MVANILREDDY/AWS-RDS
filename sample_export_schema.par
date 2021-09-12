@@ -1,0 +1,10 @@
+SCHEMAS=TEST_USER
+DIRECTORY=DATA_PUMP_DIR
+DUMPFILE=TEST_USER.dmp
+exclude=procobj:"IN   -- to exclude scheduled jobs for export 
+  (SELECT NAME FROM sys.OBJ$
+   AND OWNER# IN
+     (SELECT USER# FROM SYS.USER$
+      WHERE NAME IN ('RDSADMIN','SYS','SYSTEM','RDS_DATAGUARD','RDSSEC')
+     )
+  )"
